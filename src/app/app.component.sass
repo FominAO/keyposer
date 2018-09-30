@@ -1,0 +1,44 @@
+@import "../sass/mixins.sass"
+.app 
+  height: 98vh
+  width: 100%
+  &:focus
+    outline: none
+.header
+  +flex-row(flex-end)
+.mark
+  +flex-row(center)
+  font-size: 100px
+  width: 100%
+  margin-left: 170px
+.score
+  width: 170px
+  font-size: 50px
+  font-weight: bold
+.letter
+  +flex-row(center)
+  font-size: 230px  
+.seporator
+  width: 100%
+  float: right
+  transition: 0.3s
+  box-shadow: 0 0 0 2px grey
+.progress
+  +flex-row(center)
+  font-size: 50px
+.info
+  margin-top: 250px
+  font-size: 25px
+  +flex-row(center)
+.mobile
+  display: none
+@media (max-width: 1000px)
+  .mobile
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: grey
+    color: white
+    +flex-row(center)

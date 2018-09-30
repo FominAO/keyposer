@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app\" tabindex=\"0\" (keypress)=\"onKeyup($event.key)\">\n<div class=\"header\">\n  <span class=\"mark\">{{marks | markFilter : time}}</span>\n  <span class=\"score\">{{score | scoreFilter}}</span>\n</div>\n<div class=\"letter\">{{letter}}</div>\n<div class=\"seporator\" [style.width] = \"getPercent(progress)\"></div>\n<div class=\"progress\" >{{progress | number: '1.0-0'}}%</div>\n<div class=\"info\">Just click on big letter and begin!</div>\n</div>"
+module.exports = "<div class=\"app\" tabindex=\"0\" (keypress)=\"onKeyup($event.key)\">\n<div class=\"header\">\n  <span class=\"mark\">{{marks | markFilter : time}}</span>\n  <span class=\"score\">{{score | scoreFilter}}</span>\n</div>\n<div class=\"letter\">{{letter}}</div>\n<div class=\"seporator\" [style.width] = \"getPercent(progress)\"></div>\n<div class=\"progress\" >{{progress | number: '1.0-0'}}%</div>\n<div class=\"info\">Just click on big letter and begin!</div>\n</div>\n<div class=\"mobile\">\n  Only PC version, sorry :(\n</div>"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<div class=\"app\" tabindex=\"0\" (keypress)=\"onKeyup($event.
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".app {\n  height: 98vh;\n  width: 100%; }\n  .app:focus {\n    outline: none; }\n  .header {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end; }\n  .mark {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 100px;\n  width: 100%;\n  margin-left: 170px; }\n  .score {\n  width: 170px;\n  font-size: 50px;\n  font-weight: bold; }\n  .letter {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 230px; }\n  .seporator {\n  width: 100%;\n  float: right;\n  transition: 0.3s;\n  box-shadow: 0 0 0 2px grey; }\n  .progress {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 50px; }\n  .info {\n  margin-top: 250px;\n  font-size: 25px;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n"
+module.exports = ".app {\n  height: 98vh;\n  width: 100%; }\n  .app:focus {\n    outline: none; }\n  .header {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end; }\n  .mark {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 100px;\n  width: 100%;\n  margin-left: 170px; }\n  .score {\n  width: 170px;\n  font-size: 50px;\n  font-weight: bold; }\n  .letter {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 230px; }\n  .seporator {\n  width: 100%;\n  float: right;\n  transition: 0.3s;\n  box-shadow: 0 0 0 2px grey; }\n  .progress {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 50px; }\n  .info {\n  margin-top: 250px;\n  font-size: 25px;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .mobile {\n  display: none; }\n  @media (max-width: 1000px) {\n  .mobile {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: grey;\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center; } }\n"
 
 /***/ }),
 
@@ -70,7 +70,7 @@ var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.letter = "";
         this.goalString = "Water in two states: liquid (including the clouds, which are examples of aerosols), and solid (ice). Water is a transparent, tasteless, odorless, and nearly colorless chemical substance, which is the main constituent of Earth's streams, lakes, and oceans, and the fluids of most living organisms. It is vital for all known forms of life, even though it provides no calories or organic nutrients. Its chemical formula is H2O, meaning that each of its molecules contains one oxygen and two hydrogen atoms connected by covalent bonds. Water is the name of the liquid state of H2O at standard ambient temperature and pressure. It forms precipitation in the form of rain and aerosols in the form of fog. Clouds are formed from suspended droplets of water and ice, its solid state. When finely divided, crystalline ice may precipitate in the form of snow. The gaseous state of water is steam or water vapor. Water moves continually through the water cycle of evaporation, transpiration (evapotranspiration), condensation, precipitation, and runoff, usually reaching the sea.";
-        this.score = 99999;
+        this.score = 0;
         this.progress = 0;
         this.started = false;
         this.currentIndex = 0;
