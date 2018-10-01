@@ -1,4 +1,4 @@
-<div class="app" tabindex="0" (keypress)="onKeyup($event.key)">
+<div class="app" #appDiv tabindex="1" (keypress)="onKeyup($event.key)">
 <div class="header">
   <span class="mark">{{marks | markFilter : time}}</span>
   <span class="score">{{score | scoreFilter}}</span>
@@ -7,6 +7,17 @@
 <div class="seporator" [style.width] = "getPercent(progress)"></div>
 <div class="progress" >{{progress | number: '1.0-0'}}%</div>
 <div class="info">Just click on big letter and begin!</div>
+</div>
+<div class="menu" *ngIf='!started' tabindex="0" autofocus (keypress)="onKeyup($event.key)" >
+  <span class="start" *ngIf='score == 0'>
+    Press Enter to start. <br>
+    If you want to stop the game, press Enter again.
+  </span>
+  <span class="end" *ngIf='score != 0'>
+    Your progress: {{progress | number: '1.0-0'}}% <br>
+    Your score: {{score}} <br>
+    Rating: {{rate}}
+  </span> 
 </div>
 <div class="mobile">
   Only PC version, sorry :(

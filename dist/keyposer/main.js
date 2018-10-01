@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app\" tabindex=\"0\" (keypress)=\"onKeyup($event.key)\">\n<div class=\"header\">\n  <span class=\"mark\">{{marks | markFilter : time}}</span>\n  <span class=\"score\">{{score | scoreFilter}}</span>\n</div>\n<div class=\"letter\">{{letter}}</div>\n<div class=\"seporator\" [style.width] = \"getPercent(progress)\"></div>\n<div class=\"progress\" >{{progress | number: '1.0-0'}}%</div>\n<div class=\"info\">Just click on big letter and begin!</div>\n</div>\n<div class=\"mobile\">\n  Only PC version, sorry :(\n</div>"
+module.exports = "<div class=\"app\" #appDiv tabindex=\"1\" (keypress)=\"onKeyup($event.key)\">\n<div class=\"header\">\n  <span class=\"mark\">{{marks | markFilter : time}}</span>\n  <span class=\"score\">{{score | scoreFilter}}</span>\n</div>\n<div class=\"letter\">{{letter}}</div>\n<div class=\"seporator\" [style.width] = \"getPercent(progress)\"></div>\n<div class=\"progress\" >{{progress | number: '1.0-0'}}%</div>\n<div class=\"info\">Just click on big letter and begin!</div>\n</div>\n<div class=\"menu\" *ngIf='!started' tabindex=\"0\" autofocus (keypress)=\"onKeyup($event.key)\" >\n  <span class=\"start\" *ngIf='score == 0'>\n    Press Enter to start. <br>\n    If you want to stop the game, press Enter again.\n  </span>\n  <span class=\"end\" *ngIf='score != 0'>\n    Your progress: {{progress | number: '1.0-0'}}% <br>\n    Your score: {{score}} <br>\n    Rating: {{rate}}\n  </span> \n</div>\n<div class=\"mobile\">\n  Only PC version, sorry :(\n</div>"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<div class=\"app\" tabindex=\"0\" (keypress)=\"onKeyup($event.
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".app {\n  height: 98vh;\n  width: 100%; }\n  .app:focus {\n    outline: none; }\n  .header {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end; }\n  .mark {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 100px;\n  width: 100%;\n  margin-left: 170px; }\n  .score {\n  width: 170px;\n  font-size: 50px;\n  font-weight: bold; }\n  .letter {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 230px; }\n  .seporator {\n  width: 100%;\n  float: right;\n  transition: 0.3s;\n  box-shadow: 0 0 0 2px grey; }\n  .progress {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 50px; }\n  .info {\n  margin-top: 250px;\n  font-size: 25px;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .mobile {\n  display: none; }\n  @media (max-width: 1000px) {\n  .mobile {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: grey;\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center; } }\n"
+module.exports = ".app {\n  height: 98vh;\n  width: 100%; }\n  .app:focus {\n    outline: none; }\n  .header {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end; }\n  .mark {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 100px;\n  width: 100%;\n  margin-left: 170px; }\n  .score {\n  width: 170px;\n  font-size: 50px;\n  font-weight: bold; }\n  .letter {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 230px; }\n  .seporator {\n  width: 100%;\n  float: right;\n  transition: 0.3s;\n  box-shadow: 0 0 0 2px grey; }\n  .progress {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 50px; }\n  .info {\n  margin-top: 250px;\n  font-size: 25px;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .menu {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: #000000d4;\n  color: white;\n  font-size: 50px;\n  text-align: center;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  .mobile {\n  display: none; }\n  @media (max-width: 1000px) {\n  .mobile {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background-color: grey;\n    color: white;\n    display: flex;\n    align-items: center;\n    justify-content: center; } }\n"
 
 /***/ }),
 
@@ -76,18 +76,20 @@ var AppComponent = /** @class */ (function () {
         this.currentIndex = 0;
         this.timerScore = 0;
         this.time = 0;
+        this.rate = 0;
         this.letter = this.goalString[0];
     }
     AppComponent.prototype.onKeyup = function (e) {
-        if (!this.started) {
-            this.startGame();
-        }
-        if (e == this.goalString[this.currentIndex]) {
+        if (this.started && e == this.goalString[this.currentIndex]) {
             this.changeLetter();
         }
+        if (e == 'Enter') {
+            this.turnGame();
+        }
     };
-    AppComponent.prototype.startGame = function () {
-        this.started = true;
+    AppComponent.prototype.turnGame = function () {
+        this.started = !this.started;
+        this.started ? this.appDiv.nativeElement.focus() : '';
     };
     AppComponent.prototype.changeLetter = function () {
         ++this.currentIndex;
@@ -110,12 +112,17 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.addScore = function () {
         if (this.time <= 3000) {
-            this.score += 1000 - Math.floor(this.time / 3);
+            this.score += Math.floor(1000000 / this.goalString.length) - Math.floor(this.time / 3);
         }
+        this.rate = Math.floor(this.score * (1 + this.progress / 20) / 100);
     };
     AppComponent.prototype.getPercent = function (perc) {
         return 100 - perc + '%';
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('appDiv'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], AppComponent.prototype, "appDiv", void 0);
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
@@ -263,7 +270,7 @@ var ScoreFilterPipe = /** @class */ (function () {
         var result = value.toString();
         console.log(value);
         if (value.toString().length < 6) {
-            result = this.getZeros(5 - value.toString().length) + value;
+            result = this.getZeros(6 - value.toString().length) + value;
         }
         return result;
     };

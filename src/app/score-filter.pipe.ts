@@ -9,7 +9,7 @@ export class ScoreFilterPipe implements PipeTransform {
     let result = value.toString();
     console.log(value)
     if (value.toString().length < 6) {
-      result = this.getZeros(5 - value.toString().length) + value
+      result = this.getZeros(6 - value.toString().length) + value
     }
     return result;
   }
