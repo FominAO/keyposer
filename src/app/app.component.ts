@@ -1,10 +1,31 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-
+import { state, animate, transition, style, trigger } from '@angular/animations'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
+  animations: [
+    trigger ('spawnLost', 
+    [ 
+      state('spawned', style({
+        fontSize: '200px',
+        opacity: "0"
+      })),
+      state('shown', style({
+        fontSize: '170px',
+        opacity: "1"
+      })),
+      state('lost', style({
+        fontSize: '170px',
+        opacity: "1"
+      })),
+      transition('spawned => shown', [animate('0.3s')]),
+      transition('shown => lost', [animate('0.3s')]),
+      transition('lost => spawned', [animate('0.0s')]),
+    ]
+    )
+  ]
 })
 export class AppComponent {
   @ViewChild('appDiv') appDiv: ElementRef;
@@ -17,6 +38,8 @@ export class AppComponent {
   timerScore = 0;
   time = 0;
   rate = 0;
+  shown = false;
+  markStates = ['spawned', 'shown', 'lost']
   constructor() {
     this.letter = this.goalString[0]
   }
@@ -34,12 +57,14 @@ export class AppComponent {
   }
 
   changeLetter() {
+    
     ++this.currentIndex
     if (this.goalString[this.currentIndex] == ' ') {
       this.letter = 'Space'
     } else {
     this.letter = this.goalString[this.currentIndex]
     }
+    
     this.getProgress()
     this.getMark()
   }

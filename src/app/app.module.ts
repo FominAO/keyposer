@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MarkFilterPipe } from './mark-filter.pipe';
 import { ScoreFilterPipe } from './score-filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { ScoreFilterPipe } from './score-filter.pipe';
     ScoreFilterPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
