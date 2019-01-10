@@ -10,7 +10,13 @@
   <link rel="stylesheet" type="text/css" href="addtohomescreen.css">
   <script src="addtohomescreen.js"></script>
   <script>
-  addToHomescreen();
+  window.addEventListener("beforeinstallprompt", function(e) { 
+  // log the platforms provided as options in an install prompt 
+  console.log(e.platforms); // e.g., ["web", "android", "windows"] 
+  e.userChoice.then(function(outcome) { 
+    console.log(outcome); // either "accepted" or "dismissed"
+  }, handleError); 
+});
   </script>
 </head>
 <body>
