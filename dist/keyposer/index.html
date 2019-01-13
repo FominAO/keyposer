@@ -14,15 +14,27 @@
   <!-- <link rel="stylesheet" type="text/css" href="addtohomescreen.css"> -->
   <!-- <script src="addtohomescreen.js"></script> -->
   <script>
-//   window.addEventListener("beforeinstallprompt", ev => {
-//     ev.preventDefault();
-//     document.createElement('button')  
-//   // log the platforms provided as options in an install prompt 
-//   console.log(e.platforms); // e.g., ["web", "android", "windows"] 
-//   e.userChoice.then(function(outcome) { 
-//     console.log(outcome); // either "accepted" or "dismissed"
-//   }, handleError); 
-// });
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            // Регистрация успешна
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+            // Регистрация не успешна
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+
+}
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+// Prevent Chrome 67 and earlier from automatically showing the prompt
+// e.preventDefault();
+// Stash the event so it can be triggered later.
+// deferredPrompt = e;
+});
   </script>
 </head>
 <body>
