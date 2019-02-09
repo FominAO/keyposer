@@ -3,42 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Keyposer</title>
+  <base href="/">
 
-  <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#FFFFFF">
-  <meta name="apple-mobile-web-app-title" content="Keyposer">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <!-- <link rel="stylesheet" type="text/css" href="addtohomescreen.css"> -->
-  <!-- <script src="addtohomescreen.js"></script> -->
-  <script>
-  if ('serviceWorker' in navigator) {
-     console.log("Will the service worker register?");
-     navigator.serviceWorker.register('sw.js')
-       .then(function(reg){
-         console.log("Yes, it did.");
-      }).catch(function(err) {
-         console.log("No it didn't. This happened:", err)
-     });
-  }
-  </script>
-</head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+<link rel="stylesheet" href="styles.14cbaa2140a8f2f9306c.css"></head>
 <body>
   <app-root></app-root>
-<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
-<script>
-
-  
-
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-// Prevent Chrome 67 and earlier from automatically showing the prompt
-// e.preventDefault();
-// Stash the event so it can be triggered later.
-// deferredPrompt = e;
-});
- </script>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.2f4a59095805af02bd79.js"></script><script type="text/javascript" src="main.617f4d2f7d29bf7e485f.js"></script></body>
 </html>
