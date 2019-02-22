@@ -4,53 +4,13 @@
   <meta charset="utf-8">
   <title>Keyposer</title>
 
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
-<link rel="stylesheet" href="styles.14cbaa2140a8f2f9306c.css"></head>
+</head>
 <body>
-  <script>
-    var defPrompt;
-    window.addEventListener('beforeinstallprompt', function(e) {
-      e.preventDefault();
-      defPrompt = e;
-      showPrompt();
-    })
-    function showAddToHomeScreen() {
-
-        var a2hsBtn = document.querySelector(".ad2hs-prompt");
-        a2hsBtn.style.display = "block";
-        a2hsBtn.addEventListener("click", addToHomeScreen);
-      }
-    function addToHomeScreen() {
-      var a2hsBtn = document.querySelector(".ad2hs-prompt");
-
-      // hide our user interface that shows our A2HS button
-      a2hsBtn.style.display = 'none';
-
-      // Show the prompt
-      deferredPrompt.prompt();
-
-      // Wait for the user to respond to the prompt
-      deferredPrompt.userChoice
-        .then(function (choiceResult) {
-
-
-
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-
-          deferredPrompt = null;
-
-        });
-    }  
-  </script>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
-<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.2f4a59095805af02bd79.js"></script><script type="text/javascript" src="main.617f4d2f7d29bf7e485f.js"></script></body>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>

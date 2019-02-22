@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { state, animate, transition, style, trigger } from '@angular/animations'
+import { PwaService } from './sw.service';
 
 @Component({
   selector: 'app-root',
@@ -40,8 +41,11 @@ export class AppComponent {
   rate = 0;
   shown = false;
   markStates = ['spawned', 'shown', 'lost']
-  constructor() {
+  constructor(private pwaService: PwaService) {
     this.letter = this.goalString[0]
+  }
+  installApp() {
+    this.pwaService.promptEvent.prompt()
   }
   onKeyup(e) {
     if (this.started && e == this.goalString[this.currentIndex]) {
