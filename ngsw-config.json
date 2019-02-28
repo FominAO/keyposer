@@ -1,15 +1,15 @@
 {
-  "index": "/index.html",
+  "index": "/keyposer/dist/keyposer/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/favicon.ico",
-          "/index.html",
-          "/*.css",
-          "/*.js"
+          "/keyposer/dist/keyposer/favicon.ico",
+          "/keyposer/dist/keyposer/index.html",
+          "/keyposer/dist/keyposer/*.css",
+          "/keyposer/dist/keyposer/*.js"
         ]
       }
     }, {
@@ -18,7 +18,7 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
-          "/assets/**"
+          "/keyposer/dist/keyposer/assets/**"
         ]
       }
     }
