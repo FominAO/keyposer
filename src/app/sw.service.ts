@@ -1,16 +1,20 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
+import { Injectable, Output, EventEmitter, HostListener } from '@angular/core';
 @Injectable()
 export class PwaService {
   promptEvent;
   @Output() public getPrompt = new EventEmitter<any>();
-  constructor(private swUpdate: SwUpdate) {
-    swUpdate.available.subscribe(event => {
-      
-    });
-    window.addEventListener('beforeinstallprompt', event => {
-      this.promptEvent = event;
-    });
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e) {
+    console.log(e);
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    this.getPrompt.emit(e);
+  }
+  constructor() {
+    // window.addEventListener('beforeinstallprompt', event => {
+    //   this.promptEvent = event;
+    // });
   }
   promptChecked() {
     this.getPrompt.emit(this.getPrompt);
