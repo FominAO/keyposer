@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pub-git": "git add . & git add -f dist & git commit -m --message & git push",
+    "build-pub": "ng build --prod & npm run pub-git --message"
   },
   "private": true,
   "dependencies": {
