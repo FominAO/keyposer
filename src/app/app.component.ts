@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { state, animate, transition, style, trigger } from '@angular/animations'
+import { state, animate, transition, style, trigger, keyframes } from '@angular/animations'
 import { PwaService } from './sw.service';
 
 @Component({
@@ -21,15 +21,32 @@ import { PwaService } from './sw.service';
         fontSize: '170px',
         opacity: "1"
       })),
-      transition('spawned => shown', [animate('0.3s')]),
-      transition('shown => lost', [animate('0.3s')]),
-      transition('lost => spawned', [animate('0.0s')]),
+      transition('* => shown', [animate(300, keyframes([
+        style({
+          fontSize: '190px',
+          opacity: 0,
+          offset: 0
+        }),
+        style({
+          fontSize: '180px',
+          opacity: 1,
+          offset: 0.5
+        }),
+        style({
+          fontSize: '170px',
+          opacity: 1,
+          offset: 0.75
+        })
+      ]))]),
+      transition('shown => *', [animate(300)]),
+
     ]
     )
   ]
 })
 export class AppComponent {
   @ViewChild('appDiv') appDiv: ElementRef;
+  markStatus = 'hidden'
   letter = "";
   goalString = "Water in two states: liquid (including the clouds, which are examples of aerosols), and solid (ice). Water is a transparent, tasteless, odorless, and nearly colorless chemical substance, which is the main constituent of Earth's streams, lakes, and oceans, and the fluids of most living organisms. It is vital for all known forms of life, even though it provides no calories or organic nutrients. Its chemical formula is H2O, meaning that each of its molecules contains one oxygen and two hydrogen atoms connected by covalent bonds. Water is the name of the liquid state of H2O at standard ambient temperature and pressure. It forms precipitation in the form of rain and aerosols in the form of fog. Clouds are formed from suspended droplets of water and ice, its solid state. When finely divided, crystalline ice may precipitate in the form of snow. The gaseous state of water is steam or water vapor. Water moves continually through the water cycle of evaporation, transpiration (evapotranspiration), condensation, precipitation, and runoff, usually reaching the sea.";
   score = 0;
@@ -76,6 +93,7 @@ export class AppComponent {
     this.progress = (this.currentIndex/this.goalString.length)*100
   }
   getMark() {
+    this.markStatus = 'shown'
     this.time = +(new Date()) - this.timerScore;
     this.addScore();
 
@@ -89,5 +107,8 @@ export class AppComponent {
   }
   getPercent(perc) {
     return 100 - perc + '%'
+  }
+  hideMark() {
+    this.markStatus = 'hidden'
   }
 }

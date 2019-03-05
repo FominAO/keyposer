@@ -1,7 +1,7 @@
 <div class="app" #appDiv tabindex="1" (keypress)="onKeyup($event.key)">
 <div class="header">
     <!-- [ngClass]="spawned ? '':''" -->
-  <!-- <span class="mark" [@spawnLost] = "shown ? 'spawned' : 'shown'">{{marks | markFilter : time}}</span> -->
+  <span class="mark" [@spawnLost] = "markStatus" (@spawnLost.done) = "hideMark()">{{marks | markFilter : time}}</span>
   <span class="score">{{score | scoreFilter}}</span>
 </div>
 <div class="letter">{{letter}}</div>
